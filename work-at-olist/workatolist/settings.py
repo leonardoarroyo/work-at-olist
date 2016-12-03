@@ -28,7 +28,6 @@ INSTALLED_APPS = [
     'django_extensions',
     'rest_framework',
     'channels',
-    'categories'
 ]
 
 MIDDLEWARE_CLASSES = [
