@@ -1,0 +1,2 @@
+-r requirements/local.txt
+codecov==2.0.5

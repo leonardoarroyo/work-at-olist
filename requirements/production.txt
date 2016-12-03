@@ -2,5 +2,4 @@ Django==1.10.4
 prettyconf==1.2.3
 dj-database-url==0.4.1
 djangorestframework==3.5.3
-
-
+coverage==4.2
