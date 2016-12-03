@@ -1,3 +1,6 @@
+[![Build Status](https://img.shields.io/codeship/ffc45700-9b90-0134-0c91-16e097bb143b/master.svg?style=flat-square)](https://app.codeship.com/projects/188319)
+[![Coverage Status](https://img.shields.io/codecov/c/github/leonardoarroyo/work-at-olist.svg?style=flat-square)](https://codecov.io/gh/leonardoarroyo/work-at-olist)
+
 # Work at Olist
 
 Olist is a company that offers an integration platform for sellers and
