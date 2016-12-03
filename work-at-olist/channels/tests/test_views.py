@@ -14,6 +14,14 @@ class ChannelResourceViewSetTestCase(TestCase):
         self.client = APIClient()
         self.url = reverse('channel-list')
 
+    def test_query_optimization(self):
+        """ Test channels route does not exceed 1 query"""
+
+        helpers.create_sample_channels(amount=10)
+        with self.assertNumQueries(1):
+          response = self.client.get(self.url, format="json")
+
+
     def test_return_channels(self):
         """ Test channel list route returns all channels """
         response = self.client.get(self.url)
