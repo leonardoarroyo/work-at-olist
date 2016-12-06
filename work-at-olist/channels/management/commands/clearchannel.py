@@ -2,27 +2,17 @@ from channels.models import Channel, Category
 from channels.management.base import BaseChannelCommandMixin
 from django.core.management.base import BaseCommand
 
-from channels.management.helpers import get_input
-
 class Command(BaseChannelCommandMixin, BaseCommand):
     help = "Remove all categories from a channel"
 
     def handle(self, *args, **options):
         channel_name = options['channel_name']
-        self.verbosity = options['verbosity']
+        self.options = options
 
-        # Running with verbosity 0 also requires no-input
-        if options['verbosity'] == 0 and not options['no_input']:
-            self._print("[ERR] Running with verbosity=0 requires flag --no-input.", 0, file=self.stderr)
-            exit(1)
+        self._check_verbosity()
 
         # Confirm channel clearing
-        if not options['no_input']:
-            user_input = get_input("This will remove all categories for channel '{}'. Do you want to proceed? [y/N] ".format(channel_name))
-
-            if user_input.lower().strip() != "y":
-                self._print("Not proceeding.", 1)
-                exit(0)
+        self._confirm_operation("This will remove all categories for channel '{}'. Do you want to proceed?".format(channel_name))
 
         # Check for channel existence
         try:
