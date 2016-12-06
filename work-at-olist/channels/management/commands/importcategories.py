@@ -65,7 +65,9 @@ class Command(BaseChannelCommandMixin, BaseCommand):
 
             self._print("Creating category '{}', parent '{}'".format(k, parent), 2, file=self.stdout)
 
-            category.save()
+            if not self.options['dry_run']:
+              category.save()
+
             self._create_category_recursively(channel, v, parent=category)
 
 
@@ -84,10 +86,10 @@ class Command(BaseChannelCommandMixin, BaseCommand):
 
         category_tree = self._generate_tree_from_csv(options['csv_file'])
 
-        channel = Channel.objects.get_or_create(name=channel_name)[0]
-
         self._print("Clearing channel.", 1, file=self.stdout)
-        call_command('clearchannel', channel_name, '-v0', '--no-input')
+        if not self.options['dry_run']:
+          channel = Channel.objects.get_or_create(name=channel_name)[0]
+          call_command('clearchannel', channel_name, '-v0', '--no-input')
 
         self._print("Creating category tree.", 1, file=self.stdout)
         self._create_category_recursively(channel, category_tree)
