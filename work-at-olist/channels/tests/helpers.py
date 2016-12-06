@@ -1,3 +1,6 @@
+from django.test import TestCase
+from django.core.management import call_command
+
 import random
 import string
 import uuid
@@ -32,3 +35,14 @@ def is_valid_uuid(uuid_to_test, version=4):
 
     return str(uuid_obj) == uuid_to_test
 
+
+class BaseChannelCommandTestCaseMixin(TestCase):
+    """ Tests for any command which include BaseChannelCommandMixin """
+
+    def test_no_verbosity_requires_no_input(self):
+        """ Test calling clearchannel command with verbosity 0 requires --no-input """
+        with self.assertRaises(SystemExit):
+            call_command('clearchannel', 'abc', '-v 0', stdout=self.stdout, stderr=self.stderr)
+
+        self.stderr.seek(0)
+        self.assertTrue(self.stderr.read().strip() == "[ERR] Running with verbosity=0 requires flag --no-input.")

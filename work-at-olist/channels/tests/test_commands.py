@@ -7,18 +7,11 @@ from channels import models
 from channels.tests import helpers
 
 
-class ClearChannelCommandTestCase(TestCase):
+
+class ClearChannelCommandTestCase(helpers.BaseChannelCommandTestCaseMixin, TestCase):
     def setUp(self):
         self.stdout = StringIO()
         self.stderr = StringIO()
-
-    def test_no_verbosity_requires_no_input(self):
-        """ Test calling command with verbosity 0 requires --no-input """
-        with self.assertRaises(SystemExit):
-            call_command('clearchannel', 'abc', '-v 0', stdout=self.stdout, stderr=self.stderr)
-
-        self.stderr.seek(0)
-        self.assertTrue(self.stderr.read().strip() == "[ERR] Running with verbosity=0 requires flag --no-input.")
 
     @patch('channels.management.helpers.get_input', return_value="N")
     def test_ask_for_confirmation_without_no_input(self, input):
