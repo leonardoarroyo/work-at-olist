@@ -15,7 +15,7 @@ class ClearChannelCommandTestCase(helpers.BaseChannelCommandTestCaseMixin, TestC
 
     @patch('channels.management.helpers.get_input', return_value="N")
     def test_ask_for_confirmation_without_no_input(self, input):
-        """ Test calling command without --no-input flag asks for user confirmation """
+        """ Test calling clearchannel command without --no-input flag asks for user confirmation """
         with self.assertRaises(SystemExit):
             call_command('clearchannel', 'abc', stdout=self.stdout, stderr=self.stderr)
 
@@ -23,7 +23,7 @@ class ClearChannelCommandTestCase(helpers.BaseChannelCommandTestCaseMixin, TestC
         self.assertTrue(self.stdout.read().strip() == "Not proceeding.")
 
     def test_raises_error_inexistent_channel(self):
-        """ Test calling command for an inexistent channel returns an error """
+        """ Test calling clearchannel command for an inexistent channel returns an error """
         with self.assertRaises(SystemExit):
             call_command('clearchannel', 'abc', '--no-input', stdout=self.stdout, stderr=self.stderr)
 
@@ -31,7 +31,7 @@ class ClearChannelCommandTestCase(helpers.BaseChannelCommandTestCaseMixin, TestC
         self.assertTrue(self.stderr.read().strip() == "[ERR] Channel 'abc' does not exist.")
 
     def test_command_clears_channel(self):
-        """ Test calling command clears the channel """
+        """ Test calling clearchannel command clears the channel """
         channel = models.Channel(name="testchannel")
         channel.save()
         helpers.create_sample_categories(channel, amount=10)
@@ -45,7 +45,7 @@ class ClearChannelCommandTestCase(helpers.BaseChannelCommandTestCaseMixin, TestC
 
 
     def test_high_verbosity(self):
-        """ Test calling with high verbosity outputs category id and name """
+        """ Test calling clearchannel command  with high verbosity outputs category id and name """
         channel = models.Channel(name="testchannel")
         channel.save()
         helpers.create_sample_categories(channel, amount=10)
