@@ -16,5 +16,9 @@ class Category(models.Model):
     channel = models.ForeignKey('channels.Channel')
     parent = models.ForeignKey('self', blank=True, null=True)
 
+
+    class Meta:
+        unique_together = ('name', 'parent', 'channel',)
+
     def __str__(self):
         return self.name
