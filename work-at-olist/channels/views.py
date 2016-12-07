@@ -15,3 +15,11 @@ class ChannelResourceViewSet(mixins.RetrieveModelMixin, mixins.ListModelMixin, v
             return serializers.ChannelListSerializer
         if self.action == "retrieve":
             return serializers.ChannelRetrieveSerializer
+
+class CategoryResourceViewSet(mixins.RetrieveModelMixin, viewsets.GenericViewSet):
+    queryset = models.Category.objects.all()
+    lookup_field = "uuid"
+
+    def get_serializer_class(self):
+        if self.action == "retrieve":
+            return serializers.CategoryRetrieveSerializer
