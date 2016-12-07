@@ -1,0 +1,32 @@
+{
+  "Books": {
+    "National Literature": {
+      "Science Fiction": {},
+      "Fiction Fantastic": {}
+    },
+    "Foreign Literature": {},
+    "Computers": {
+      "Applications": {},
+      "Database": {},
+      "Programming": {}
+    }
+  },
+  "Games": {
+    "XBOX 360": {
+      "Console": {},
+      "Games": {},
+      "Accessories": {}
+    },
+    "XBOX One": {
+      "Console": {},
+      "Games": {},
+      "Accessories": {}
+    },
+    "Playstation 4": {}
+  },
+  "Computers": {
+    "Notebooks": {},
+    "Tablets": {},
+    "Desktop": {}
+  }
+}

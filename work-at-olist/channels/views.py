@@ -6,6 +6,20 @@ from rest_framework import viewsets
 from channels import models
 from channels import serializers
 
-class ChannelResourceViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
+class ChannelResourceViewSet(mixins.RetrieveModelMixin, mixins.ListModelMixin, viewsets.GenericViewSet):
     queryset = models.Channel.objects.all()
-    serializer_class = serializers.ChannelListSerializer
+    lookup_field = "name"
+
+    def get_serializer_class(self):
+        if self.action == "list":
+            return serializers.ChannelListSerializer
+        if self.action == "retrieve":
+            return serializers.ChannelRetrieveSerializer
+
+class CategoryResourceViewSet(mixins.RetrieveModelMixin, viewsets.GenericViewSet):
+    queryset = models.Category.objects.all()
+    lookup_field = "uuid"
+
+    def get_serializer_class(self):
+        if self.action == "retrieve":
+            return serializers.CategoryRetrieveSerializer

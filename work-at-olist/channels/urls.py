@@ -5,9 +5,14 @@ from rest_framework import routers
 from channels import views
 
 # Channels router
-router = routers.SimpleRouter()
-router.register(r'', views.ChannelResourceViewSet, 'channel')
+channels = routers.SimpleRouter()
+channels.register(r'channels', views.ChannelResourceViewSet, 'channel')
+
+# Categories router
+categories = routers.SimpleRouter()
+categories.register(r'categories', views.CategoryResourceViewSet, 'category')
 
 urlpatterns = [
-    url(r'^', include(router.urls)),
+    url(r'^', include(channels.urls)),
+    url(r'^', include(categories.urls)),
 ]
