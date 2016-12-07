@@ -81,15 +81,6 @@ class PrepareChannel():
             self.success_count += 1
 
 class ChannelResourceRetrieveTestCase(PrepareChannel, TestCase):
-    def test_query_optimization(self):
-        """ Test channels route does not exceed 1 query"""
-
-        #helpers.create_sample_channels(amount=10)
-        #with self.assertNumQueries(1):
-        #  response = self.client.get(self.url, format="json")
-        pass
-
-
     def test_return_category_tree(self):
         """ Test channel detail route returns category tree for channel """
         url = reverse("channel-detail", [self.channel])
