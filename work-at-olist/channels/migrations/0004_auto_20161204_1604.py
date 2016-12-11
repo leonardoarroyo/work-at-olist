@@ -23,16 +23,4 @@ class Migration(migrations.Migration):
             name='uuid',
             field=models.UUIDField(default=uuid.uuid4, editable=False),
         ),
-        migrations.AddField(
-            model_name='category',
-            name='id',
-            field=models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID'),
-            preserve_default=False,
-        ),
-        migrations.AddField(
-            model_name='channel',
-            name='id',
-            field=models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID'),
-            preserve_default=False,
-        ),
     ]
