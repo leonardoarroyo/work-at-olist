@@ -1,0 +1,21 @@
+language: python
+python:
+  - "3.5"
+
+services:
+  - postgresql
+
+env:
+  - DATABASEB_URL=mysql://postgres:@localhost:5432/olist
+
+before_script:
+  - psql -c 'create database olist;' -U postgres
+
+install:
+  - pip install -r requirements-test.txt
+
+script: 
+  - coverage run --source=channels,workatolist ./manage.py test
+
+after_script:
+  - bash <(curl -s https://codecov.io/bash)
