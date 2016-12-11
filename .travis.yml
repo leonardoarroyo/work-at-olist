@@ -6,7 +6,7 @@ services:
   - postgresql
 
 env:
-  - DATABASEB_URL=mysql://postgres:@localhost:5432/olist
+  - DATABASE_URL=postgres://postgres:@localhost:5432/olist
 
 before_script:
   - psql -c 'create database olist;' -U postgres
