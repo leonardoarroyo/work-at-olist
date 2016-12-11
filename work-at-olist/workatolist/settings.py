@@ -12,7 +12,7 @@ config = Configuration(root_path=os.path.abspath(os.path.join(BASE_DIR, '..')))
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG')
+DEBUG = config('DEBUG', cast=config.boolean)
 
 ALLOWED_HOSTS = ['arroyo-workatolist.herokuapp.com']
 
