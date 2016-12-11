@@ -10,6 +10,7 @@ env:
 
 before_script:
   - psql -c 'create database olist;' -U postgres
+  - cd work-at-olist
 
 install:
   - pip install -r requirements-test.txt
