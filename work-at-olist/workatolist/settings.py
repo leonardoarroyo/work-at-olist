@@ -16,6 +16,12 @@ DEBUG = config('DEBUG')
 
 ALLOWED_HOSTS = ['arroyo-workatolist.herokuapp.com']
 
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    )
+}
+
 
 # Application definition
 
