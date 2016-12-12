@@ -63,10 +63,6 @@ class PrepareChannel():
         file = os.path.abspath(os.path.join(os.path.dirname(__file__), "data/sample_categories.csv"))
         call_command("importcategories", channel_name, file, "-v0", "--no-input", stdout=StringIO(), stderr=StringIO()),
 
-    def _import_categories(self, channel_name):
-        file = os.path.abspath(os.path.join(os.path.dirname(__file__), "data/sample_categories.csv"))
-        call_command("importcategories", channel_name, file, "-v0", "--no-input", stdout=StringIO(), stderr=StringIO()),
-
     def _load_test_category_tree(self):
         file = os.path.abspath(os.path.join(os.path.dirname(__file__), "data/sample_categories.json"))
         with open(file, "r") as json_data:
