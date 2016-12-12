@@ -23,7 +23,7 @@ class Command(BaseChannelCommandMixin, BaseCommand):
 
         # Delete categories
         categories = Category.objects.filter(channel=channel)
-        self._print("Deleting {} categories.".format(categories.count()), 1)
+        self._print("Deleting {} categories from channel '{}'.".format(categories.count(), channel), 1)
 
         if options['verbosity'] == 2:
             for category in categories:
